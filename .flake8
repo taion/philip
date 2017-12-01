@@ -1,0 +1,4 @@
+[flake8]
+ignore = C813,C815,C816
+import-order-style = google
+application-import-names = pipf
