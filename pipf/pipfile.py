@@ -1,10 +1,9 @@
 from contextlib import contextmanager
 import copy
+import json
+from pathlib import Path
 
 import click
-import json
-
-from pathlib import Path
 import toml
 
 # -----------------------------------------------------------------------------
@@ -88,10 +87,12 @@ class Pipfile(object):
     def get_lockfile_group_key(self, dev):
         return self.LOCKFILE_DEV_KEY if not dev else self.LOCKFILE_PROD_KEY
 
-    def get_python_version(self):
+    @property
+    def python_version(self):
         return self.data[self.REQUIRES_KEY]['python_version']
 
-    def set_python_version(self, python_version):
+    @python_version.setter
+    def python_version(self, python_version):
         self.data[self.REQUIRES_KEY]['python_version'] = python_version
 
     def get_lockfile_packages(self, prod_only=False):
@@ -181,6 +182,8 @@ class Pipfile(object):
             dev_ireqs, lockfile=True,
         )
 
+        # TODO: Fail if any dev pins don't match corresponding prod ones.
+
     def make_packages(self, ireqs, lockfile=False):
         return dict(
             self.make_package_tuple(ireq, lockfile=lockfile)
@@ -198,10 +201,10 @@ class Pipfile(object):
         if not lockfile and tuple(package_info.keys()) == ('version',):
             package_info = package_info['version']
 
-        return self.key_from_ireq(ireq), package_info
+        return self.get_key(ireq), package_info
 
     @classmethod
-    def key_from_ireq(cls, ireq):
+    def get_key(cls, ireq):
         return ireq.req.name.lower().replace('_', '-')
 
     def write(self):

@@ -44,9 +44,9 @@ setup(
     keywords='pip pipfile',
     packages=('pipf',),
     install_requires=(
-        'backports.tempfile; python_version<"3.2"',
+        'backports.tempfile; python_version < "3.2"',
         'click',
-        'pathlib',
+        'pathlib; python_version < "3.4"',
         'pip-tools',
         'pew',
         'toml',
