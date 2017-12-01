@@ -1,6 +1,6 @@
 import subprocess
 
-from setuptools import Command, find_packages, setup
+from setuptools import Command, setup
 
 # -----------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ def system(command):
 setup(
     name="pipf",
     version='0.0.0',
-    description="Python Pipfile dependency management",
+    description="Predictable Python package management",
     url='https://github.com/taion/pipf',
     author="Jimmy Jia",
     author_email='tesrin@gmail.com',
@@ -42,7 +42,19 @@ setup(
         'Programming Language :: Python :: 3',
     ),
     keywords='pip pipfile',
-    packages=find_packages(exclude=('tests',)),
+    packages=('pipf',),
+    install_requires=(
+        'backports.tempfile; python_version<"3.2"',
+        'click',
+        'pathlib',
+        'pip-tools',
+        'pew',
+        'toml',
+    ),
+    entry_points='''
+        [console_scripts]
+        pipf = pipf:cli
+    ''',
     cmdclass={
         'clean': system('rm -rf build dist *.egg-info'),
         'package': system('python setup.py pandoc sdist bdist_wheel'),
