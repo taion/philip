@@ -1,2 +1,2 @@
 # pipf
-Python Pipfile dependency management
+Predictable Python package management
