@@ -1,10 +1,9 @@
 from contextlib import contextmanager
 import copy
+import json
+from pathlib import Path
 
 import click
-import json
-
-from pathlib import Path
 import toml
 
 # -----------------------------------------------------------------------------

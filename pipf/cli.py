@@ -1,3 +1,4 @@
+from pathlib import Path
 from subprocess import CalledProcessError
 import sys
 
@@ -7,7 +8,6 @@ except ImportError:
     from backports.tempfile import TemporaryDirectory
 
 import click
-from pathlib import Path
 from pew import pew
 
 from .pipfile import Pipfile
