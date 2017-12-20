@@ -30,7 +30,7 @@ def configure_venv():
 
         pipfile = Pipfile(pipfile_filename)
         try:
-            python_version = pipfile.get_python_version()
+            python_version = pipfile.python_version
         except KeyError:
             raise click.ClickException(
                 "could not get Python version from Pipfile",
@@ -98,12 +98,12 @@ def remove_packages(removed_packages):
         'freeze',
     )
     installed_package_keys = frozenset(
-        Pipfile.key_from_ireq(ireq_from_package_str(package_str))
+        Pipfile.get_key(ireq_from_package_str(package_str))
         for package_str in pip_freeze_result.out.splitlines(),
     )
     to_remove_ireqs = tuple(
         ireq for ireq in ireqs_from_packages(removed_packages)
-        if Pipfile.key_from_ireq(ireq) in installed_package_keys,
+        if Pipfile.get_key(ireq) in installed_package_keys,
     )
 
     if to_remove_ireqs:
@@ -137,7 +137,7 @@ def init(python_version):
 
     click.echo("creating Pipfile")
     pipfile = Pipfile(pipfile_filename)
-    pipfile.set_python_version(python_version)
+    pipfile.python_version = python_version
     pipfile.write()
 
 
