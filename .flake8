@@ -1,4 +1,8 @@
 [flake8]
 ignore = C813,C815,C816
+exclude =
+    venv,
+    # flake8 defaults.
+    .svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.eggs,*.egg
 import-order-style = google
 application-import-names = pipf
