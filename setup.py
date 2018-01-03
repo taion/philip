@@ -24,10 +24,10 @@ def system(command):
 # -----------------------------------------------------------------------------
 
 setup(
-    name="pipf",
+    name="philip",
     version='0.0.0',
     description="Predictable Python package management",
-    url='https://github.com/taion/pipf',
+    url='https://github.com/taion/philip',
     author="Jimmy Jia",
     author_email='tesrin@gmail.com',
     license='MIT',
@@ -42,7 +42,7 @@ setup(
         'Programming Language :: Python :: 3',
     ),
     keywords='pip pipfile',
-    packages=('pipf',),
+    packages=('philip',),
     install_requires=(
         'backports.tempfile; python_version < "3.2"',
         'click',
@@ -53,7 +53,7 @@ setup(
     ),
     entry_points='''
         [console_scripts]
-        pipf = pipf:cli
+        philip = philip:cli
     ''',
     cmdclass={
         'clean': system('rm -rf build dist *.egg-info'),

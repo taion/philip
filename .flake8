@@ -5,4 +5,4 @@ exclude =
     # flake8 defaults.
     .svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.eggs,*.egg
 import-order-style = google
-application-import-names = pipf
+application-import-names = philip
