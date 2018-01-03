@@ -1,2 +1,2 @@
-# pipf
+# philip
 Predictable Python package management
